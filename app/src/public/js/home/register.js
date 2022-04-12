@@ -9,11 +9,14 @@ const button = document.querySelector("#button");
 button.addEventListener("click", register);
 
 function register() {
+  if (!id.value) return alert("아이디를 입력해주세요.");
+  if (password !== confirmPassword) {
+    return alert("비밀번호 일치X");
+  }
   const req = {
     id: id.value,
     password: password.value,
     name: name.value,
-    confirmPassword: confirmPassword.value,
   };
 
   fetch("/register", {
