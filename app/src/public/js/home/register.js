@@ -2,17 +2,21 @@
 
 const id = document.querySelector("#id");
 const password = document.querySelector("#password");
+const name = document.querySelector("#name");
+const confirmPassword = document.querySelector("#confirm-password");
 const button = document.querySelector("#button");
 
-button.addEventListener("click", login);
+button.addEventListener("click", register);
 
-function login() {
+function register() {
   const req = {
     id: id.value,
     password: password.value,
+    name: name.value,
+    confirmPassword: confirmPassword.value,
   };
 
-  fetch("/login", {
+  fetch("/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +27,7 @@ function login() {
       .json()
       .then((res) => {
         if (res.success) {
-          location.href = "/";
+          location.href = "/login";
         } else {
           alert(res.message);
         }
