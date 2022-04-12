@@ -20,9 +20,11 @@ const process = {
     const password = req.body.password;
 
     if (users.id.includes(id)) {
-      console.log(users.id.indexOf(id));
-      if (users.password.includes(password)) {
-        console.log(users.password.indexOf(password));
+      const index = users.id.indexOf(id);
+      if (users.password[index] === password) {
+        return res.json({
+          success: true,
+        });
       }
     }
     return res.json({

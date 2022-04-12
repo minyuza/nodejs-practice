@@ -18,5 +18,18 @@ function login() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(req),
-  }).then((res) => res.json().then((res) => console.log(res)));
+  }).then((res) =>
+    res
+      .json()
+      .then((res) => {
+        if (res.success) {
+          location.href = "/";
+        } else {
+          alert(res.message);
+        }
+      })
+      .catch((err) => {
+        console.error(new Error("에러 발생"));
+      })
+  );
 }
